@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>socket.io sample</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h1>simple chat</h1>
+
+  <ul id="messages"></ul>
+
+  <form id="messageForm" action="#">
+    <input id="inputMsg" autocomplete="off" /><button>Send</button>
+  </form>
+
+  <script>
+    const socket = io.connect(location.origin)
+    const form = document.getElementById('messageForm')
+    const name = Math.random().toString(32).substring(2)
+    socket.emit('user in', name)
+
+    console.log(name)
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+
+      const input = document.getElementById('inputMsg')
+
+      if (!input.value) {
+        console.log('未入力')
+        return
+      }
+
+      const sendMsg = `${input.value} @${name}`
+
+      socket.emit('message', sendMsg) // client > server
+      input.value = ''
+      console.log(`submit: ${sendMsg}`)
+      return
+    })
+
+    socket.on('message', (msg) => { // server > client
+      console.log(`received: ${msg}`)
+      const li = document.createElement('li')
+      li.textContent = `received: ${msg}`
+
+      const ul = document.getElementById('messages')
+      ul.appendChild(li)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "chatroom.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0"
+  },
+  "engines": {
+    "npm": "⚠️【お願い】npmではなくyarnを使ってください🙇yarn.lockを大事にしてください(切実)"
+  }
+}
