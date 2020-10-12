@@ -11,7 +11,7 @@ const server = http.Server(app)
 const PORT = 7000
 
 server.listen(PORT, () => {
-  console.log(`server listening. Port: ${PORT}`)
+  console.log(`server listening. [http://localhost:${PORT}]`)
 })
 
 app.get('/', (req, res) => {
