@@ -14,9 +14,9 @@ server.listen(PORT, () => {
   console.log(`server listening. [http://localhost:${PORT}]`)
 })
 
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/index.html`)
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(`${__dirname}/index.html`)
+// })
 
 const io = socketIO.listen(server)
 
