@@ -7,9 +7,7 @@ import dotenv from 'dotenv'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// 本リポジトリの最上位ディレクトリにある.envを読み込む
-const ENV_PATH = path.join(__dirname, '../.env')
-dotenv.config({ path: ENV_PATH })
+dotenv.config()
 
 const app = express()
 const server = http.Server(app)
