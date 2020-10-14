@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
 
   // join user
   socket.on('user in', (name) => {
-    console.log('join user')
+    console.log(`join user: ${name}`)
 
     const id = socket.id
 
