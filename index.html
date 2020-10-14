@@ -16,7 +16,8 @@
   </form>
 
   <script>
-    const socket = io.connect(location.origin)
+    // "/socket.io/socket.io.js" は自動生成される
+    const socket = io(`${location.origin}`)
     const form = document.getElementById('messageForm')
     const name = Math.random().toString(32).substring(2)
     socket.emit('user in', name)
