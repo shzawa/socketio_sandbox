@@ -1,14 +1,19 @@
 import express from 'express'
 import http from 'http'
 import socketIO from 'socket.io'
-import { dirname } from 'path'
+import path from 'path'
 import { fileURLToPath } from 'url'
+import dotenv from 'dotenv'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// 本リポジトリの最上位ディレクトリにある.envを読み込む
+const ENV_PATH = path.join(__dirname, '../.env')
+dotenv.config({ path: ENV_PATH })
 
 const app = express()
 const server = http.Server(app)
-const PORT = 7000
+const PORT = process.env.BE_PORT || 7000
 
 server.listen(PORT, () => {
   console.log(`server listening. [http://localhost:${PORT}]`)
