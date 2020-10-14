@@ -23,28 +23,30 @@ server.listen(PORT, () => {
 
 const io = socketIO.listen(server)
 
-let msgs = [] // 簡易DBとして
+let records = [] // 簡易DBとして
 
 io.on('connection', (socket) => {
-  socket.on('message', (msg) => {
-    console.log(`message: ${msg}`)
+  socket.on('message', (record) => {
+    console.log(`message: ${record.msg}`)
 
     const today = new Date()
-    const todayTimestamp = `${today.getHours()}時${today.getMinutes()}分${('0' +today.getSeconds()).slice(-2)}秒`
-    const sendMsg = `${msg} / ${todayTimestamp}`
-    msgs.push(sendMsg)
+    const createdAt = `${today.getHours()}時${today.getMinutes()}分${('0' +today.getSeconds()).slice(-2)}秒`
+    const returnRecord = {
+      ...record,
+      createdAt
+    }
+    records.push(returnRecord)
 
-    io.emit('message', sendMsg)
+    io.emit('message', returnRecord)
   })
 
   // join user
-  socket.on('user in', (name) => {
-    console.log(`join user: ${name}`)
+  socket.on('user in', ({ username }) => {
+    console.log(`join user: ${username}`)
 
     const id = socket.id
-
-    msgs.forEach(msg => {
-      io.to(id).emit('message', msg)
+    records.forEach(record => {
+      io.to(id).emit('message', record)
     })
   })
 })
