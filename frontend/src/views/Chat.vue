@@ -3,9 +3,8 @@
     <h1>chat</h1>
 
     <form id="messageForm" @submit.prevent="sendRecord">
-      <input id="inputMsg" autocomplete="off" v-model="inputMsg" /><button>
-        Send
-      </button>
+      <input id="inputMsg" autocomplete="off" v-model="inputMsg" />
+      <button>Send</button>
     </form>
 
     <ul>
